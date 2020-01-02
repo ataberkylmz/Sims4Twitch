@@ -1,0 +1,8 @@
+__pycache__/
+.idea/
+.vscode/
+EA/base/
+EA/core/
+EA/generated/
+EA/simulation/
+venv/
