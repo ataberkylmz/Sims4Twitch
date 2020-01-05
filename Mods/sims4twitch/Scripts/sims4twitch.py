@@ -5,6 +5,11 @@ import sims4.reload as r
 import os.path
 from objects import ALL_HIDDEN_REASONS, HiddenReasonFlag
 from protocolbuffers import Consts_pb2, DistributorOps_pb2, SimObjectAttributes_pb2
+import testClient
+
+#TODO: Use streamlabs' Socket API to get bits, donations, etc and implement the rest.
+#TODO: Find a way to use requests module in Sims 4.
+#TODO: DO NOT PUT THE TEST SERVER INTO MODS FOLDER AS IT CONTAINS INFINITE LOOP!!!!!!!
 
 @sims4.commands.Command('reload', command_type=sims4.commands.CommandType.Live)
 def reload(module: str, _connection=None):
@@ -39,4 +44,13 @@ def test(_connection=None):
         output("sim last name: {}".format(sim_info.last_name))
     '''
 
+@sims4.commands.Command('sockettest', command_type=sims4.commands.CommandType.Live)
+def socket_test(_connection=None):
+    output = sims4.commands.CheatOutput(_connection)
+    _client = testClient.Client()
+    _client.connect(output)
+    _client.send()
+    received = _client.listen()
+    output("Data received: {}".format(received))
+    
 
